@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block contend %}
+
+
+<style>
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-left: 10%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+@media (max-width: 600px) {
+    th, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+</style>
+
+<h2 style="text-align: center;">Institution :<span style="color: red;">Kollam</span></h2>
+<form action="/viewkollamstudents/" method="get">
+    
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Course</th>
+            <th>Place</th>
+            <th>Qualification</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in kodata %}
+        <tr>
+            <td>{{i.fname}}</td>
+            <td>{{i.lname}}</td>
+            <td>{{i.course}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.qualification}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.staus}}</td>
+            <td><a href="/kollsingleview/?koid={{i.id}}">Update</a></td>
+        </tr>
+        {% endfor %}
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+
+</form>
+
+
+<br><br>
+
+{% endblock %}

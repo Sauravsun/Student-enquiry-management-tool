@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% block contend %}
+<style>
+    table {
+        width: 60%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        margin-left: 20%;
+    }
+    
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    @media (max-width: 600px) {
+        th, td {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    .pagination .step-links a {
+        color: #333;
+        text-decoration: none;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+        border-radius: 5px;
+        margin-left: 10%;
+    }
+
+    .pagination .step-links .current {
+        margin: 0 10px;
+        color: #333;
+    }
+
+    .pagination .step-links a:hover {
+        background-color: #f0f0f0;
+    }
+</style>
+
+<br>
+<h2 style="text-align: center;">All Payment Transaction</h2>
+<form action="/transactions/" method="get">
+    <p>Period: {{ period_label }}:
+        <select name="period" onchange="this.form.submit()">
+            <option value="daily" {% if period == 'daily' %} selected {% endif %}>Daily</option>
+            <option value="weekly" {% if period == 'weekly' %} selected {% endif %}>Weekly</option>
+            <option value="monthly" {% if period == 'monthly' %} selected {% endif %}>Monthly</option>
+            <option value="yearly" {% if period == 'yearly' %} selected {% endif %}>Yearly</option>
+        </select>
+    </p>    
+    {% if period == 'monthly' %}
+    <p>Select Month:
+        {% for month_num, month_name in month_choices %}
+            <a href="?period=monthly&month={{ month_num }}">{{ month_name }}</a>
+        {% endfor %}
+    </p>
+    {% endif %}
+
+    {% if period == 'weekly' %}
+    <p>Week Range:
+        <input type="week" name="week" onchange="this.form.submit()">
+    </p>
+    {% endif %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Mode of Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for k in data15 %}
+            <tr>
+                <td><strong>{{ k.paymentdate }}</strong></td>
+                <td><strong>{{ k.paymentamount }}</strong></td>
+                <td>{{ k.mod_payment }}</td>          
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if data15.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ data15.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ data15.number }} of {{ data15.paginator.num_pages }}.
+            </span>
+    
+            {% if data15.has_next %}
+                <a href="?page={{ data15.next_page_number }}">next</a>
+                <a href="?page={{ data15.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    
+        <div>
+            <a href="?period=daily">Daily</a> |
+            <a href="?period=weekly">Weekly</a> |
+            <a href="?period=monthly">Monthly</a> |
+            <a href="?period=yearly">Yearly</a>
+        </div>
+        <p>Total Amount: {{ total_amount }}</p>
+        
+        {% if period == 'yearly' %}
+            <h3>Yearly Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Month</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for month_num, month_data in grouped_payments.items %}
+                        <tr>
+                            <td>{{ month_data.month_name }}</td>
+                            <td>{{ month_data.total_amount }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>Total Yearly Amount:</td>
+                        <td>{{ total_amount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</form>
+<br><br>
+{% endblock %}

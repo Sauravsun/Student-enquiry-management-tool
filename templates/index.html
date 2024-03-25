@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block contend %}
+
+<style>
+    .heading{
+        text-align: center;
+        
+    }
+    .heading-h2{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+    .search-container{
+        text-align: center;
+    }
+    .search-button {
+      padding: 1%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .search-button:hover{
+        background-color: #168205;
+    }
+    .search-bar{
+        padding: 1%;
+        width: 20%;
+    }
+    .links {
+            display: flex;
+            justify-content: center;
+            padding: 1%;
+        }
+
+        /* Link styles */
+        .links a {
+            text-decoration: none;
+            color: black;
+            padding: 20px 130px;
+            border: 0px solid rgb(6, 0, 0);
+            border-radius: 7px;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: rgb(51, 130, 240);
+        }
+
+        .links a:hover {
+            background-color: rgb(10, 100, 211);
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+            color: white;
+        }
+
+    /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .links a {
+                margin-bottom: 10px;
+            }
+        }
+
+    .half-size-hr {
+      width: 50%;
+      margin: 0 auto;
+      border: 0;
+      border-top: 1px solid #000; /* Adjust color as needed */
+    }
+    
+</style>
+
+
+
+
+<!-- <hr class="half-size-hr" style="width: 30%;"> -->
+<div class="heading">
+    <h2 style='font-family: "Trirong", serif;'>Search Student Details</h2>
+</div>
+<form action="/searchwithid/" method="get">
+    <div class="search-container">
+        <input type="text" class="search-bar" name="student_id" placeholder="Student Id No">
+        <button class="search-button">Search</button>
+    </div>
+</form>
+
+<br>
+<hr class="half-size-hr">
+
+<div class="heading">
+    <h2 style='font-family: "Trirong", serif;'>Add New Enquery Details </h2>
+</div>
+
+
+<div class="links">
+    <a href="/stations/" style="text-decoration: none;">Enquery</a> . 
+    
+    <a href="/searchstations/" style="text-decoration: none;">View all Enquered student</a> 
+</div>
+
+
+
+
+
+  <br><br>
+
+{% endblock %}

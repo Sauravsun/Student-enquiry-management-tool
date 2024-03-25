@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block contend %}
+
+<br>
+<style>
+    table {
+        width: 80%;
+        margin-left: 10%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    a {
+        text-decoration: none;
+        color: blue;
+    }
+
+    /* Responsive styles */
+    @media only screen and (max-width: 600px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+        
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        
+        tr {
+            border: 1px solid #ccc;
+        }
+        
+        td {
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+        
+        td:before {
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+        
+        td:nth-of-type(1):before { content: "Student Id No"; }
+        td:nth-of-type(2):before { content: "First Name"; }
+        td:nth-of-type(3):before { content: "Last Name"; }
+        td:nth-of-type(4):before { content: "Course"; }
+        td:nth-of-type(5):before { content: "Place"; }
+        td:nth-of-type(6):before { content: "Qualification"; }
+        td:nth-of-type(7):before { content: "Phone"; }
+        td:nth-of-type(8):before { content: "Update"; }
+    }
+</style>
+
+<form action="/kzkdstudents/" method="get">
+    <table>
+        <thead>
+            <tr>
+                <th>Student Id No</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Qualification</th>
+                <th>Phone</th>
+                <th>Course</th>
+                <th>Course fee</th> 
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for k in data11 %}
+            <tr>
+                <td style="color: red;font-weight: 900;">{{k.kzstu_id}}</td>
+                <td>{{k.kz_fname}}</td>
+                <td>{{k.kz_lname}}</td>
+                <td>{{k.kz_qualification}}</td>
+                <td>{{k.kz_phone}}</td>
+                <td>{{k.kz_course}}</td>
+                <td>{{k.kz_coursefee}}</td>
+                <td><a href="/kzkdstusingleview/?kzpayid={{k.kzstu_id}}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</form>
+
+
+<br><br>
+
+{% endblock %}

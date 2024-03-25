@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% block contend %}
+
+<style>
+
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h3 {
+        color: #333;
+        
+    }
+
+    h1 {
+        font-size: 1.8em;
+        font-weight: 700;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    h3 {
+        font-size: 1.1em;
+        margin-top: 5px;
+    }
+
+    .responsive-img {
+        max-width: 100%;
+        height: auto;
+    }
+    span{
+        color: red;
+    }
+    .center {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .center-form {
+        width: 80%;
+        max-width: 400px; /* Set a maximum width for larger screens */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 600px) {
+        .center-form {
+            width: 90%;
+        }
+    }
+    .join{
+        text-align: end;
+        align-items: center;
+        justify-content: center;
+    }
+    .join a{
+        text-decoration: none;
+        color: white;
+        background-color: rgb(30, 145, 5);
+        padding: 10px 10px;
+        border-radius: 5px;
+    }
+    .join a:hover{
+        background-color: rgb(236, 7, 7);
+    }
+
+</style>
+
+
+
+<br>
+{% for i in knrdata %}
+
+<div class="container">
+    <h1>{{i.fname}} {{i.lname}}</h1>
+    <h3><span>Place </span>: {{i.place}}</h3>
+    <h3><span>Qualification</span>: {{i.qualification}}</h3>
+    <h3><span>Course</span>: {{i.course}}</h3>
+    <h3><span>Date</span>: {{i.date}}</h3>
+    <h3><span>Phone</span>: {{i.phone}}</h3>
+    <h3><span>Status</span>: {{i.staus}}</h3>
+</div>
+
+{% endfor %}
+
+<hr style="width: 80%;">
+
+
+<div class="container">
+    <h2>Follow-ups</h2>
+    <form class="form-inline" action="/knr_follups/" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="knid" value="{{ knrdata.0.id }}">
+
+      <div class="form-group">
+        <label for="email">Date:</label>
+        <input style="width: 25%;" type="date" class="form-control" id="email" name="date">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Response:</label>
+        <input type="text" class="form-control" id="pwd" name="response">
+      </div>
+      
+      <button type="submit" class="btn btn-default">Add</button>
+    </form>
+    <h2>Follow-ups Details</h2>
+
+    {% for j in knrfldata %}
+        <p><strong>Date:</strong>  {{ j.date1 }}</p>
+        <p><strong>Response:</strong>  {{ j.response1 }}</p>
+        <hr>
+    {% endfor %}
+        <br>
+        <hr>
+    {% for i in knrdata %}
+        <br>
+    <div class="join">
+       Click here to Register -> <a href="/knnrstureg/?knid={{i.id}}">Register</a>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+   
+
+<br><br>
+
+{% endblock %}

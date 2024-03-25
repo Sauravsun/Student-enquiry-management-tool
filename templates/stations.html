@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{% block contend %}
+
+
+<style>
+nav {
+    padding: 60px;
+    text-align: center;
+    align-items: center;
+    margin-left: 35%;
+}
+
+nav a {
+    color: rgb(5, 0, 0);
+    text-decoration: none;
+    display: block;
+    padding: 20px 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    width: 30%;
+    background-color: rgb(4, 178, 65);
+}
+
+nav a:hover {
+    color: white;
+    background-color: rgb(8, 117, 66);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+
+}
+</style>
+
+
+
+<h2 style="text-align: center;">Add Enquery</h2>
+
+<nav>
+    <a href="/addenquery/">Kannur</a>
+    <a href="/addenquerykozhikode/">Kozhikode</a>
+    <a href="/addenquerykollam">Kollam</a>
+</nav>
+
+
+
+<br><br>
+
+{% endblock %}

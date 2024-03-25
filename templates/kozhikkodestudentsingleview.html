@@ -1,0 +1,250 @@
+
+{% extends 'base.html' %}
+{% block contend %}
+
+
+<style>
+    .container {
+            max-width: 47%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 28px;
+            margin-top: 0;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h3 {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        span {
+            font-weight: bold;
+        }
+        .info {
+            margin-bottom: 15px;
+        }
+        .info span {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+        }
+
+    
+    
+        .paymentform {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="date"],
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            margin: 0;
+        }
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+        @media only screen and (max-width: 600px) {
+            .paymentform {
+                width: 90%;
+            }
+        }
+
+
+   
+   
+
+
+   
+    .join{
+        text-align: end;
+        align-items: center;
+        justify-content: center;
+    }
+    .join a{
+        text-decoration: none;
+        color: white;
+        background-color: rgb(30, 145, 5);
+        padding: 10px 10px;
+        border-radius: 5px;
+    }
+    .join a:hover{
+        background-color: rgb(236, 7, 7);
+    }
+
+    table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        @media only screen and (max-width: 600px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+
+</style>
+
+
+
+<br>
+{% for i in stu_paydata %}
+
+<div class="container">
+    <h1>Id No: {{i.kzstu_id}}</h1>
+
+    <hr>
+    <div class="info">
+        <span>Full Name:</span> {{ i.kz_fname }} {{ i.kz_lname }}
+    </div>
+    <div class="info">
+        <span>Place:</span> {{ i.kz_place }}
+    </div>
+    <div class="info">
+        <span>Qualification:</span> {{ i.kz_qualification }}
+    </div>
+    <div class="info">
+        <span>Course:</span> {{ i.kz_course }}
+    </div>
+    <div class="info">
+        <span>Phone:</span> {{ i.kz_phone }}
+    </div>
+    <hr>
+    <div class="info">
+        <span>Course Fee:</span> <strong>{{ i.kz_coursefee }}</strong>
+    </div>
+</div>
+
+{% endfor %}
+
+<br>
+
+<div class="paymentform">
+    <h2>Payments</h2>
+    <form class="form-inline" action="/kzkdstudentswithpayment/" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="kzpayid" value="{{ stu_paydata.0.kzstu_id  }}">
+
+      <div class="form-group">
+        <label for="pwd">Balance:</label>
+        <h2 style="color: red;" type="text" class="form-control" id="pwd" name="balance">{{ kzkdpayment.last.paymentbalance }}</h2>
+      </div>
+      <div class="form-group">
+        <label for="email">Date:</label>
+        <input style="width: 25%;" type="date" class="form-control" id="email" name="date" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Amount:</label>
+        <input type="text" style="width: 25%;" class="form-control" id="pwd" name="amount">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Mode of Payment:</label>
+        <select style="width: 25%;padding: 4px 4px;" id="course" name="mod" required>
+            <option value="">Select...</option>
+            <option value="Cash">Cash</option>
+            <option value="Card">Card</option>
+            <option value="G-pay">G-pay</option>
+        </select>
+      </div>
+      
+      <br>
+      <button type="submit" class="btn btn-default">Add</button>
+    </form>
+    <h2>Payment Details</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>DATE</th>
+                <th>AMOUNT</th>
+                <th>PAYMENT MODE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for j in kzkdpayment %}
+            <tr>
+                <td>{{j.paymentdate}}</td>
+                <td>{{j.paymentamount}}</td>
+                <td>{{j.mod_payment}}</td>               
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3"><strong>Total Paid Amount:</strong></td>
+                <td><strong>{{ total_paid_amount}}</strong></td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>Payment Balance:</strong></td>
+                <td><strong>{{ kzkdpayment.last.paymentbalance }}</strong></td>
+            </tr>
+           
+            
+        </tbody>
+    </table>
+
+</div>
+
+   
+
+<br><br>
+
+{% endblock %}

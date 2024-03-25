@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+{% block contend %}
+
+
+<style>
+nav {
+    padding: 40px;
+    text-align: center;
+    align-items: center;
+    margin-left: 37%;
+}
+
+nav a {
+    color: rgb(5, 0, 0);
+    text-decoration: none;
+    display: block;
+    padding: 20px 20px;
+    margin-bottom: 10px;
+    font-size: 150%;
+    border-radius: 5px;
+    width: 30%;
+    background-color: rgb(210, 176, 5);
+}
+
+nav a:hover {
+    color: white;
+    background-color: rgb(145, 86, 3);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+
+}
+</style>
+
+
+<h2 style="text-align: center;">View all Enquered Students by Institution</h2>
+<nav>
+    <a href="/viewkannurstudents/">Kannur</a>
+    <a href="/viewkozhikkodestudents/">Kozhikode</a>
+    <a href="/viewkollamstudents/">Kollam</a>
+</nav>
+
+
+<br><br>
+
+{% endblock %}

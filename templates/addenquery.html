@@ -1,0 +1,116 @@
+   {% extends 'base.html' %}
+   {% block contend %}
+   
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 7px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: grid;
+            grid-gap: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+
+    <div class="container">
+        <h2 style="font-size: 200%;color:#45a049">Institution : Kannur</h2>
+        <h2>Enquery Form</h2>
+        <form action="/addenquery/" method="post">{% csrf_token %}
+            
+
+            <label for="name">First Name:</label>
+            <input type="text" id="fname" name="fname" required>
+
+            
+            <label for="name">Last Name:</label>
+            <input type="text" id="lname" name="lname" required>
+            
+
+            <label for="place">Place:</label>
+            <input type="text" id="place" name="place" required>
+
+            <label for="Quali">Qualification:</label>
+            <input type="text" id="quali" name="quali" required>
+
+            
+            <label for="Phone">Phone:</label>
+            <input type="number" id="Phone" name="phone" required>
+
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" required>
+                <option value="">Select...</option>
+                <option value="math">Math</option>
+                <option value="english">English</option>
+                <option value="science">Science</option>
+            </select>
+
+            <label for="date">Enquery Date:</label>
+            <input type="date" id="dob" name="date" required>
+
+            <label for="stauts">Status:</label>
+            <textarea id="comments" name="status" rows="4"></textarea>
+
+            <input type="submit" onclick="alert()" value="Submit">
+        </form>
+    </div>
+
+
+
+    <script>
+        function alert() {
+            // Get the value of ka_fname from the input field
+            // var ka_fname = document.getElementById('fname').value;
+    
+            // Display an alert with ka_fname
+            alert("First Name: ");
+    
+        }
+    </script>
+
+   
+    <br><br>
+    {% endblock %}

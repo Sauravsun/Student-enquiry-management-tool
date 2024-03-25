@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .center {
+    margin: auto;
+    width: 60%;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hideform {
+    display: none;
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+    <div class="center hideform">
+        <button id="close" style="float: right;">X</button>
+        <form action="/action_page.php" onsubmit="redirectToRedirectedPage()">
+            First name:<br>
+            <input type="text" name="firstname" value="Mickey">
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" value="Mouse">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <button id="show">Show form</button>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+<script>
+    function redirectToRedirectedPage() {
+        // Here you can handle any necessary actions before redirecting
+        // For example, you might want to perform form validation
+        
+        // After any necessary actions, redirect to the redirected page
+        window.location.href = "/knrstudentsingleview/?knpayid={{k.stu_id}}";
+        return false; // Prevent default form submission
+    };
+</script>

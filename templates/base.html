@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+
+
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            
+        }
+        .heading h1{
+            text-align: left;
+            margin-left: 5%;
+            font-family:"copperplate";
+            font-size: 250%;
+        }
+
+        .navbar {
+            
+            overflow: hidden;
+            text-align: center;
+            justify-content: center;
+            background-color: rgb(179, 103, 4);
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: rgb(249, 255, 251);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #822f05;
+            color: white;
+            border-radius: 7px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .navbar a {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+
+
+        .footer {
+    background-color: rgb(179, 103, 4);
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer a {
+    display: inline-block;
+    color: rgb(249, 255, 251);
+    text-decoration: none;
+    padding: 10px 20px;
+}
+
+.footer a:hover {
+    background-color: #822f05;
+    color: white;
+    border-radius: 7px;
+}
+
+@media screen and (max-width: 600px) {
+    .footer a {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+        
+    </style>
+</head>
+<body>
+
+<div class="heading">
+    <h1>Company Name</h1>
+</div>    
+
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="/allstudents/">All students</a>
+    <a href="/transactions/">Payment Transanctions</a>
+
+</div>
+    {% block contend %}
+
+    <!-- Add your content here -->
+    {% endblock %}
+
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
+
+
+    
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+
+
+
+    
+</body>
+</html>
